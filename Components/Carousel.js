@@ -2,16 +2,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useRef, useState, useEffect } from 'react';
 import { View, Text, FlatList, Dimensions, StyleSheet, Image, ViewToken, TouchableWithoutFeedback } from 'react-native';
+import { image500 } from '../api/MovieDb';
 
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
-const data = [
-  { id: '1', title: 'Slide 1', image: 'https://metropolisjapan.com/wp-content/uploads/2023/05/r2J02Z2OpNTctfOSN1Ydgii51I3-scaled.jpg' },
-  { id: '2', title: 'Slide 2', image: 'https://images.fathomevents.com/image/upload/w_1200,dpr_2,f_auto,q_auto/v1734647897/Events/2025/1979/HPpS_1000x1480.jpg.jpg' },
-  { id: '3', title: 'Slide 3', image: 'https://th.bing.com/th/id/OIP.k9NvyyZrTH-TfdZxMFRklAHaKj?rs=1&pid=ImgDetMain' },
-];
 
-const Carousel = () => {
+const Carousel = ({data}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef();
 
@@ -42,9 +38,8 @@ useEffect(() => {
   const renderItem = ({ item}) => (
     <View style={styles.card}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Movie', item)}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+            <Image source={{ uri: image500(item.poster_path) }} style={styles.image} />
         </TouchableWithoutFeedback>
-      <Text style={styles.title}>{item.title}</Text>
     </View>
   );
 
@@ -67,7 +62,7 @@ useEffect(() => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    marginTop: 10,
   },
   card: {
     width,
@@ -75,8 +70,8 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   image: {
-    width: '90%',
-    height: 430,
+    width: width*0.8,
+    height: height*0.5,
     borderRadius: 10,
   },
   title: {

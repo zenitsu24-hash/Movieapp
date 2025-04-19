@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, ScrollView, TouchableWithoutFeedback, Image, Dimensions } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { image342 } from '../api/MovieDb'
 
 var {width, height} = Dimensions.get('window')
 const MovieList = ({title, data}) => {
@@ -24,8 +25,10 @@ const MovieList = ({title, data}) => {
                     return (
                         <TouchableWithoutFeedback key={index} onPress={() => navigation.push('Movie', item)}>
                             <View style={{marginRight: 15, marginLeft: 4}}>
-                                <Image source={{uri: 'https://images.fathomevents.com/image/upload/w_1200,dpr_2,f_auto,q_auto/v1734647897/Events/2025/1979/HPpS_1000x1480.jpg.jpg'}} style={{width: width*0.33, height: height*0.22, borderRadius: 5}}/>
-                                <Text style={{color: 'white', marginLeft: 5}}>{movieName.length > 14 ? movieName.slice(0,14)+'...' : movieName}</Text>
+                                <Image source={{uri: image342(item.poster_path)}} style={{width: width*0.33, height: height*0.22, borderRadius: 5}}/>
+                                <Text style={{color: 'white', marginLeft: 5, marginTop: 10}}>
+                                    {(item.title).length>14 ? item.title.slice(0,14)+'...' : item.title}
+                                </Text>
                             </View>
                         </TouchableWithoutFeedback>
                     )

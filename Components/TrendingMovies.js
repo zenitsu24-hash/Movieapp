@@ -7,7 +7,7 @@ const TrendingMovies = ({data}) => {
   return (
     <View style={{marginBottom: 16}}>
       <Text style={{color: 'white', fontSize: 20, marginHorizontal: 30, marginTop: 20}}>Trending</Text>
-      <Carousel/>
+      <Carousel data={data}/>
     </View>
   )
 }
